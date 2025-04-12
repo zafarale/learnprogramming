@@ -1,0 +1,140 @@
+---
+import type { BlogPostProps } from '../types/AstroProps';
+import Layout from './Layout.astro';
+import { formatDate } from '../utils/date';
+
+interface Props extends BlogPostProps {}
+
+const { content } = Astro.props;
+const {
+    title,
+    description,
+    pubDate,
+    updatedDate,
+    hero,
+    author,
+    categories,
+    tags,
+    readingTime
+} = content;
+
+---
+
+<Layout 
+    title={content.seo?.metaTitle || title}
+    description={content.seo?.metaDescription || description}
+>
+    <article class="prose lg:prose-xl mx-auto">
+        {/* Hero Section */}
+        <div class="relative aspect-video mb-8">
+            <img
+                src={hero.image}
+                alt={hero.alt}
+                class="object-cover w-full h-full rounded-lg shadow-lg"
+            />
+            {hero.caption && (
+                <p class="text-sm text-gray-500 mt-2 text-center">{hero.caption}</p>
+            )}
+        </div>
+
+        {/* Article Header */}
+        <header class="mb-8">
+            <h1 class="text-4xl font-bold mb-4">{title}</h1>
+            <div class="flex items-center gap-4 text-gray-600 mb-4">
+                <div class="flex items-center gap-2">
+                    {author.avatar && (
+                        <img
+                            src={author.avatar}
+                            alt={author.name}
+                            class="w-10 h-10 rounded-full"
+                        />
+                    )}
+                    <span>{author.name}</span>
+                </div>
+                <span>•</span>
+                <time datetime={pubDate.toISOString()}>{formatDate(pubDate)}</time>
+                {readingTime && (
+                    <>
+                        <span>•</span>
+                        <span>{readingTime} min read</span>
+                    </>
+                )}
+            </div>
+            {updatedDate && (
+                <p class="text-sm text-gray-500">
+                    Last updated on {formatDate(updatedDate)}
+                </p>
+            )}
+        </header>
+
+        {/* Article Content */}
+        <div class="article-content">
+            <slot />
+        </div>
+
+        {/* Article Footer */}
+        <footer class="mt-12 pt-8 border-t border-gray-200">
+            <div class="flex flex-wrap gap-2 mb-4">
+                {categories.map(category => (
+                    <a
+                        href={`/categories/${category.toLowerCase()}`}
+                        class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm hover:bg-gray-200"
+                    >
+                        {category}
+                    </a>
+                ))}
+            </div>
+            <div class="flex flex-wrap gap-2">
+                {tags.map(tag => (
+                    <a
+                        href={`/tags/${tag.toLowerCase()}`}
+                        class="px-3 py-1 border border-gray-300 text-gray-600 rounded-full text-sm hover:bg-gray-50"
+                    >
+                        #{tag}
+                    </a>
+                ))}
+            </div>
+            {author.bio && (
+                <div class="mt-8 p-6 bg-gray-50 rounded-lg">
+                    <h2 class="text-lg font-semibold mb-2">About the Author</h2>
+                    <p class="text-gray-600">{author.bio}</p>
+                </div>
+            )}
+        </footer>
+    </article>
+</Layout>
+
+<style>
+    .article-content {
+        max-width: 65ch;
+        margin: 0 auto;
+    }
+
+    .article-content :global(img) {
+        max-width: 100%;
+        height: auto;
+        border-radius: 0.5rem;
+    }
+
+    .article-content :global(h2) {
+        margin-top: 2rem;
+        margin-bottom: 1rem;
+        font-size: 1.875rem;
+        font-weight: 600;
+    }
+
+    .article-content :global(p) {
+        margin-bottom: 1.5rem;
+        line-height: 1.75;
+    }
+
+    .article-content :global(ul),
+    .article-content :global(ol) {
+        margin-bottom: 1.5rem;
+        padding-left: 1.25rem;
+    }
+
+    .article-content :global(li) {
+        margin-bottom: 0.5rem;
+    }
+</style>
