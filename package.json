@@ -32,6 +32,8 @@
 
     "@tailwindcss/typography": "^0.5.16",
 
+    "@types/bun": "^1.2.9",
+
     "@types/node": "^22.14.1",
 
     "gh-pages": "^6.3.0"
