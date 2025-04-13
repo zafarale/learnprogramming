@@ -2,6 +2,7 @@
 import type { BlogPostProps } from '../types/AstroProps';
 import Layout from './Layout.astro';
 import { formatDate } from '../utils/date';
+import { getPath } from '../utils/path';
 
 interface Props extends BlogPostProps {}
 
@@ -28,7 +29,7 @@ const {
         {/* Hero Section */}
         <div class="relative aspect-video mb-8">
             <img
-                src={hero.image}
+                src={getPath(hero.image)}
                 alt={hero.alt}
                 class="object-cover w-full h-full rounded-lg shadow-lg"
             />
@@ -44,7 +45,7 @@ const {
                 <div class="flex items-center gap-2">
                     {author.avatar && (
                         <img
-                            src={author.avatar}
+                            src={getPath(author.avatar)}
                             alt={author.name}
                             class="w-10 h-10 rounded-full"
                         />
@@ -77,7 +78,7 @@ const {
             <div class="flex flex-wrap gap-2 mb-4">
                 {categories.map(category => (
                     <a
-                        href={`/categories/${category.toLowerCase()}`}
+                        href={getPath(`categories/${category.toLowerCase()}`)}
                         class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm hover:bg-gray-200"
                     >
                         {category}
@@ -87,7 +88,7 @@ const {
             <div class="flex flex-wrap gap-2">
                 {tags.map(tag => (
                     <a
-                        href={`/tags/${tag.toLowerCase()}`}
+                        href={getPath(`tags/${tag.toLowerCase()}`)}
                         class="px-3 py-1 border border-gray-300 text-gray-600 rounded-full text-sm hover:bg-gray-50"
                     >
                         #{tag}

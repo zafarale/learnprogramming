@@ -1,5 +1,6 @@
 ---
 import { formatDate } from '../utils/date';
+import { getPath } from '../utils/path';
 
 interface Props {
     title: string;
@@ -22,9 +23,9 @@ const { title, description, pubDate, hero, author, categories, slug, readingTime
 ---
 
 <article class="flex flex-col bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
-    <a href={`/blog/${slug}`} class="relative aspect-video">
+    <a href={getPath(`blog/${slug}`)} class="relative aspect-video">
         <img
-            src={hero.image}
+            src={getPath(hero.image)}
             alt={hero.alt}
             class="object-cover w-full h-full"
         />
@@ -34,14 +35,14 @@ const { title, description, pubDate, hero, author, categories, slug, readingTime
             <div class="flex gap-2 mb-3">
                 {categories.map(category => (
                     <a
-                        href={`/categories/${category.toLowerCase()}`}
+                        href={getPath(`categories/${category.toLowerCase()}`)}
                         class="text-xs px-2 py-1 bg-gray-100 text-gray-600 rounded-full hover:bg-gray-200"
                     >
                         {category}
                     </a>
                 ))}
             </div>
-            <a href={`/blog/${slug}`}>
+            <a href={getPath(`blog/${slug}`)}>
                 <h2 class="text-xl font-bold mb-2 text-gray-900 hover:text-blue-600">{title}</h2>
             </a>
             <p class="text-gray-600 mb-4 line-clamp-2">{description}</p>
@@ -51,7 +52,7 @@ const { title, description, pubDate, hero, author, categories, slug, readingTime
             <div class="flex items-center gap-2">
                 {author.avatar && (
                     <img
-                        src={author.avatar}
+                        src={getPath(author.avatar)}
                         alt={author.name}
                         class="w-6 h-6 rounded-full"
                     />

@@ -1,0 +1,108 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+// This will handle the form submission
+const handleSubmit = async (formData: FormData) => {
+    // You can add your form handling logic here
+};
+---
+
+<Layout 
+    title="Contact Us" 
+    description="Get in touch with us for any questions or inquiries"
+>
+    <div class="max-w-3xl mx-auto">
+        <h1 class="text-4xl font-bold text-gray-900 mb-6">Contact Us</h1>
+        
+        <div class="prose lg:prose-xl mb-8">
+            <p class="text-lg text-gray-600">
+                Have a question or want to get in touch? We'd love to hear from you. 
+                Fill out the form below and we'll get back to you as soon as possible.
+            </p>
+        </div>
+
+        <form 
+            class="bg-white shadow-md rounded-lg p-8 space-y-6"
+            method="POST"
+        >
+            <div class="space-y-2">
+                <label for="name" class="block text-sm font-medium text-gray-700">
+                    Name
+                </label>
+                <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    required
+                    class="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+                />
+            </div>
+
+            <div class="space-y-2">
+                <label for="email" class="block text-sm font-medium text-gray-700">
+                    Email
+                </label>
+                <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    required
+                    class="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+                />
+            </div>
+
+            <div class="space-y-2">
+                <label for="subject" class="block text-sm font-medium text-gray-700">
+                    Subject
+                </label>
+                <input
+                    type="text"
+                    id="subject"
+                    name="subject"
+                    required
+                    class="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+                />
+            </div>
+
+            <div class="space-y-2">
+                <label for="message" class="block text-sm font-medium text-gray-700">
+                    Message
+                </label>
+                <textarea
+                    id="message"
+                    name="message"
+                    rows="6"
+                    required
+                    class="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+                ></textarea>
+            </div>
+
+            <button
+                type="submit"
+                class="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors"
+            >
+                Send Message
+            </button>
+        </form>
+
+        <div class="mt-12 prose lg:prose-xl">
+            <h2 class="text-2xl font-semibold text-gray-900 mb-4">Other Ways to Connect</h2>
+            
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="space-y-2">
+                    <h3 class="text-lg font-medium text-gray-900">Email</h3>
+                    <p class="text-gray-600">contact@example.com</p>
+                </div>
+                
+                <div class="space-y-2">
+                    <h3 class="text-lg font-medium text-gray-900">Follow Us</h3>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-600 hover:text-gray-900">Twitter</a>
+                        <a href="#" class="text-gray-600 hover:text-gray-900">GitHub</a>
+                        <a href="#" class="text-gray-600 hover:text-gray-900">LinkedIn</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</Layout>
