@@ -22,7 +22,7 @@ interface Props {
 const { title, description, pubDate, hero, author, categories, slug, readingTime } = Astro.props;
 ---
 
-<article class="flex flex-col bg-white theme-dark:bg-gray-800 rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
+<article class="flex flex-col bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
     <a href={getPath(`blog/${slug}`)} class="relative aspect-video">
         <img
             src={getPath(hero.image)}
@@ -36,19 +36,19 @@ const { title, description, pubDate, hero, author, categories, slug, readingTime
                 {categories.map(category => (
                     <a
                         href={getPath(`categories/${category.toLowerCase()}`)}
-                        class="text-xs px-2 py-1 bg-gray-100 theme-dark:bg-gray-700 text-gray-600 theme-dark:text-gray-300 rounded-full hover:bg-gray-200 theme-dark:hover:bg-gray-600"
+                        class="text-xs px-2 py-1 bg-gray-100 text-gray-600 rounded-full hover:bg-gray-200"
                     >
                         {category}
                     </a>
                 ))}
             </div>
             <a href={getPath(`blog/${slug}`)}>
-                <h2 class="text-xl font-bold mb-2 text-gray-900 theme-dark:text-white hover:text-blue-600 theme-dark:hover:text-blue-400">{title}</h2>
+                <h2 class="text-xl font-bold mb-2 text-gray-900 hover:text-blue-600">{title}</h2>
             </a>
-            <p class="text-gray-600 theme-dark:text-gray-300 mb-4 line-clamp-2">{description}</p>
+            <p class="text-gray-600 mb-4 line-clamp-2">{description}</p>
         </div>
         
-        <div class="flex items-center justify-between text-sm text-gray-500 theme-dark:text-gray-400">
+        <div class="flex items-center justify-between text-sm text-gray-500">
             <div class="flex items-center gap-2">
                 {author.avatar && (
                     <img
